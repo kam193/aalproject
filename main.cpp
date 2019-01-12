@@ -3,14 +3,17 @@
 
 #include "DataStructure/Grid.h"
 #include "Solver/Solver.h"
+#include "Solver/BrutSolver.h"
 
 using namespace std;
 
 int main(){
     vector<vector<char>> grid_definition {{'_', '_', '_'}, {'_', '#', '_'}, {'_', '_', '_'}};
-    Grid grid(3, 3, grid_definition);
+    vector<vector<char>> grid_definition4 {{'_', '_', '_', '_'}, {'_', '_', '_', '_'}, {'_', '_', '_', '_'}, {'_', '_', '_', '_'}};
+    vector<vector<char>> grid_definition8 {{'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}};
+    Grid grid(8, 8, grid_definition8);
 
-    Solver solver(grid);
+    BrutSolver solver(grid);
 
     cout << solver.solve() << endl;
 
