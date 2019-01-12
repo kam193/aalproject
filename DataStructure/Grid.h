@@ -2,6 +2,7 @@
 #define AAL_GRID_H
 
 #include <vector>
+#include <iostream>
 
 #include "Orientation.h"
 
@@ -30,16 +31,17 @@ public:
   Grid() {}
   Grid(int width, int height, std::vector<std::vector<char>> originalGrid);
   Grid(Grid &old);
-  
+
   void insert(int x, int y, Orientation orientation);
   void remove(int x, int y, Orientation orientation);
   bool is_possible_to_insert(int x, int y, Orientation orientation);
-  int get_free_count() {return free_count; }
+  int get_free_count() { return free_count; }
   int get_width() { return width; }
   int get_height() { return height; }
-  int& get_field(int x, int y) { return grid[y][x]; }
-  int& get_field(Field field) { return grid[field.y][field.x]; }
+  int &get_field(int x, int y) { return grid[y][x]; }
+  int &get_field(Field field) { return grid[field.y][field.x]; }
 
+  friend std::istream &operator>>(std::istream &stream, Grid &grid);
 };
 
 #endif

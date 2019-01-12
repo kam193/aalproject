@@ -112,3 +112,28 @@ vector<Field> Grid::fields_coordinates(int x, int y, Orientation orientation)
 
     return moves;
 }
+
+istream &operator>>(istream &stream, Grid &grid){
+    stream >> grid.height >> grid.width;
+
+    grid.grid.resize(grid.height);
+    grid.free_count = 0;
+
+    char tmp;
+    for (int y = 0; y < grid.height; ++y){
+        grid.grid[y].resize(grid.width);
+        for (int x = 0; x < grid.width; ++x)
+        {
+            stream >> tmp;
+            if (tmp == '#')
+                grid.grid[y][x] = BLOCKED;
+            else
+            {
+                grid.grid[y][x] = FREE;
+                grid.free_count++;
+            }
+        }
+    }
+
+    return stream;
+}
