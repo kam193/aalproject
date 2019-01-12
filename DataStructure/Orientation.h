@@ -23,4 +23,7 @@ enum Orientation
     O16
 };
 
+const Orientation AllOrientations[] = {
+    O1, O2, O3, O4, O5, O6, O7, O8, O9, O10, O11, O12, O13, O14, O15, O16};
+
 #endif

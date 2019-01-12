@@ -4,19 +4,65 @@
 
 using namespace std;
 
-// void insert(int x, int y, Orientation orientation);
+Grid::Grid(int width, int height, std::vector<std::vector<char>> originalGrid)
+    : width(width), height(height), free_count(0), last_index(0)
+{
+    grid.reserve(height);
+    for (auto &line : originalGrid)
+    {
+        grid.push_back(vector<int>());
+        grid.back().reserve(width);
+        for (auto value : line)
+        {
+            if (value == '#')
+                grid.back().push_back(BLOCKED);
+            else
+            {
+                grid.back().push_back(FREE);
+                ++free_count;
+            }
+        }
+    }
+}
 
-bool Grid::is_possible_to_insert(int x, int y, Orientation orientation){
-    vector<Field> fields = getFieldsCoordinates(x, y, orientation);
+Grid::Grid(Grid &old)
+    : width(old.width), height(old.height), free_count(old.free_count),
+      last_index(old.last_index), grid(old.grid) {}
+
+bool Grid::is_possible_to_insert(int x, int y, Orientation orientation)
+{
+    vector<Field> fields = fields_coordinates(x, y, orientation);
     if (fields.size() == 4)
+    {
+        for (Field field : fields)
+            if (grid[field.y][field.x] != FREE)
+                return false;
         return true;
+    }
     return false;
 }
 
-vector<Grid::Field> Grid::getFieldsCoordinates(int x, int y, Orientation orientation){
+void Grid::insert(int x, int y, Orientation orientation)
+{
+    auto fields = fields_coordinates(x, y, orientation);
+    ++last_index;
+    for (auto field : fields)
+        get_field(field) = last_index;
+    free_count -= fields.size();
+}
+
+void Grid::remove(int x, int y, Orientation orientation){
+    auto fields = fields_coordinates(x, y, orientation);
+    for (auto field : fields)
+        get_field(field) = FREE;
+    free_count += fields.size();
+}
+
+vector<Field> Grid::fields_coordinates(int x, int y, Orientation orientation)
+{
     vector<Field> moves(4);
-    
-    // For each of orientation case, get the position 
+
+    // For each of orientation case, get the position
     // of each field relative to given x, y
     if (orientation == O1)
         moves = {{0, 0}, {1, 0}, {2, 0}, {2, 1}};
@@ -51,11 +97,12 @@ vector<Grid::Field> Grid::getFieldsCoordinates(int x, int y, Orientation orienta
     else if (orientation == O16)
         moves = {{-2, -1}, {-2, 0}, {-1, 0}, {0, 0}};
 
-    for (Field &move : moves){
+    for (Field &move : moves)
+    {
         move.x += x;
         move.y += y;
 
-        // It's not possible to insert object in this 
+        // It's not possible to insert object in this
         // orientation on those coordinates, return empty
         if (move.x < 0 || move.x >= width)
             return vector<Field>();
