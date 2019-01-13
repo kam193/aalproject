@@ -15,6 +15,17 @@ struct Field
 {
   int x;
   int y;
+  
+  bool operator== (const Field &other) const
+  {
+    return (x == other.x && y == other.y);
+  }
+  bool operator< (const Field &other) const
+  {
+    if (x != other.x)
+      return x < other.x;
+    return y < other.y;
+  }
 };
 
 class Grid
@@ -42,6 +53,8 @@ public:
   int &get_field(Field field) { return grid[field.y][field.x]; }
 
   friend std::istream &operator>>(std::istream &stream, Grid &grid);
+  
+  friend void test_generating_coordinates(void);
 };
 
 #endif

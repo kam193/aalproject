@@ -67,7 +67,7 @@ vector<Field> Grid::fields_coordinates(int x, int y, Orientation orientation)
     if (orientation == O1)
         moves = {{0, 0}, {1, 0}, {2, 0}, {2, 1}};
     else if (orientation == O2)
-        moves = {{1, 0}, {0, 0}, {1, 0}, {1, 1}};
+        moves = {{-1, 0}, {0, 0}, {1, 0}, {1, 1}};
     else if (orientation == O3)
         moves = {{-2, 0}, {-1, 0}, {0, 0}, {1, 0}};
     else if (orientation == O4)
