@@ -15,7 +15,8 @@ int main(){
 
     cin >> grid;
 
-    BrutSolver solver(grid);
+    // BrutSolver solver(grid);
+    Solver solver(grid);
     cout << solver.solve() << endl;
 
     return 0;

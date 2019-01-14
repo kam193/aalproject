@@ -42,6 +42,10 @@ bool Grid::is_possible_to_insert(int x, int y, Orientation orientation)
     return false;
 }
 
+void Grid::insert(Field field, Orientation orientation){
+    insert(field.x, field.y, orientation);
+}
+
 void Grid::insert(int x, int y, Orientation orientation)
 {
     auto fields = fields_coordinates(x, y, orientation);
@@ -49,6 +53,10 @@ void Grid::insert(int x, int y, Orientation orientation)
     for (auto field : fields)
         get_field(field) = last_index;
     free_count -= fields.size();
+}
+
+void Grid::remove(Field field, Orientation orientation){
+    remove(field.x, field.y, orientation);
 }
 
 void Grid::remove(int x, int y, Orientation orientation){
@@ -96,6 +104,38 @@ vector<Field> Grid::fields_coordinates(int x, int y, Orientation orientation)
         moves = {{-1, -1}, {-1, 0}, {0, 0}, {1, 0}};
     else if (orientation == O16)
         moves = {{-2, -1}, {-2, 0}, {-1, 0}, {0, 0}};
+    else if (orientation == O17)
+        moves = {{0, 0}, {1, 0}, {2, 0}, {2, -1}};
+    else if (orientation == O18)
+        moves = {{-1, 0}, {0, 0}, {1, 0}, {1, -1}};
+    else if (orientation == O19)
+        moves = {{-2, 0}, {-1, 0}, {0, 0}, {0, -1}};
+    else if (orientation == O20)
+        moves = {{0, 0}, {0, 1}, {-1, 1}, {-2, 1}};
+    else if (orientation == O21)
+        moves = {{0, 0}, {1, 0}, {1, 1}, {1, 2}};
+    else if (orientation == O22)
+        moves = {{-1, 0}, {0, 0}, {0, 1}, {0, 2}};
+    else if (orientation == O23)
+        moves = {{-1, -1}, {0, -1}, {0, 0}, {0, 1}};
+    else if (orientation == O24)
+        moves = {{-1, -2}, {0, -2}, {0, -1}, {0, 0}};
+    else if (orientation == O25)
+        moves = {{0, 0}, {0, 1}, {0, 2}, {1, 2}};
+    else if (orientation == O26)
+        moves = {{0, -1}, {0, 0}, {0, 1}, {1, 1}};
+    else if (orientation == O27)
+        moves = {{0, -2}, {0, -1}, {0, 0}, {1, 0}};
+    else if (orientation == O28)
+        moves = {{0, 0}, {-1, 0}, {-1, -1}, {-1, -2}};
+    else if (orientation == O29)
+        moves = {{0, 0}, {0, -1}, {1, -1}, {2, -1}};
+    else if (orientation == O30)
+        moves = {{0, 1}, {0, 0}, {1, 0}, {2, 0}};
+    else if (orientation == O31)
+        moves = {{-1, 1}, {-1, 0}, {0, 0}, {1, 0}};
+    else if (orientation == O32)
+        moves = {{0, 0}, {-1, 0}, {-2, 0}, {-2, 1}};
 
     for (Field &move : moves)
     {

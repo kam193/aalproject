@@ -45,6 +45,8 @@ public:
 
   void insert(int x, int y, Orientation orientation);
   void remove(int x, int y, Orientation orientation);
+  void insert(Field field, Orientation orientation);
+  void remove(Field field, Orientation orientation);
   bool is_possible_to_insert(int x, int y, Orientation orientation);
   int get_free_count() { return free_count; }
   int get_width() { return width; }
