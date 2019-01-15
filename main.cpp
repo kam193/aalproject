@@ -4,7 +4,6 @@
 
 #include "DataStructure/Grid.h"
 #include "Solver/Solver.h"
-#include "Solver/BrutSolver.h"
 #include "Generator/Generator.h"
 #include "Tester/Tester.h"
 

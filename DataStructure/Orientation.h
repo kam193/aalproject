@@ -2,7 +2,6 @@
 #define AAL_ORIENTATION_H
 
 // Enum for each of orientation case
-// (describe on picture 2 in documetation)
 enum Orientation
 {
     O1,

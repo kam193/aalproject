@@ -2,10 +2,6 @@
 
 #include "Generator.h"
 
-// private:
-//     bool try_insert_2x2_horizonal(Field field);
-//     bool try_insert_4x4(Field field);
-
 using namespace std;
 
 bool Generator::try_insert_2x2_vertical(Field field)

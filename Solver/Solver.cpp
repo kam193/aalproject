@@ -51,7 +51,6 @@ bool Solver::update_possibile_orientations(Field field)
         if (possibleOrientations[update.field.y][update.field.x].size() != update.possible.size())
         {
             possibleOrientations[update.field.y][update.field.x] = update.possible;
-            // copy(update.possible.begin(), update.possible.end(), possibleOrientations[update.field.y][update.field.x].begin());
             possibilitiesQueue.push({update.possible.size(), {update.field}});
         }
     }
@@ -61,11 +60,8 @@ bool Solver::update_possibile_orientations(Field field)
 int Solver::solve()
 {
     generate_possible_orientations();
-    // mam: kolejkę priorytetową po najmniejszej liczbie kombinacji
-    // stos wstawionych (pole, orientacja, możliwe orientacje)
 
     int counted = 0;
-    // jestem w jakimś stanie
     while (!possibilitiesQueue.empty())
     {
         // wybieram pierwsze z kolejki (sprawdzam, czy jest to wolne)
@@ -84,12 +80,12 @@ int Solver::solve()
             continue;
         }
 
-        addedStack.push({top.field});
         // wrzucam na stos i wstawiam pierwszą możliwość
+        addedStack.push({top.field});
         analyzedGrid.insert(top.field,
                             possibleOrientations[top.field.y][top.field.x].back());
 
-        // sprawdzam czy wypełnione [tak -> x]
+        // sprawdzam czy wypełnione
         if (analyzedGrid.get_free_count() == 0)
         {
             counted++;
@@ -106,7 +102,7 @@ int Solver::solve()
     return counted;
 }
 
-// [x]: czyli wycofanie ostatniego
+// wycofanie ostatniego
 // usuwam wstawienie
 // uaktualniam kolejkę
 // wrzucam do kolejki ostatni element ze stosu, z możliwościami mniejszymi o poprzednio wstawioną

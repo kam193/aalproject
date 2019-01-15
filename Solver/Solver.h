@@ -29,11 +29,9 @@ private:
   struct StackEntry
   {
     Field field;
-    // list<Orientation> possibleOrientation;
   };
 
   priority_queue<QueueEntry> possibilitiesQueue;
-  // TODO: comparator
   stack<StackEntry> addedStack;
 
   void generate_possible_orientations();
