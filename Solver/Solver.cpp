@@ -93,7 +93,6 @@ int Solver::solve()
         if (analyzedGrid.get_free_count() == 0)
         {
             counted++;
-            int b = 0;
             revoke_last();
             continue;
         }

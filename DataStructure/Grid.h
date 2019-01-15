@@ -53,10 +53,13 @@ public:
   int get_height() { return height; }
   int &get_field(int x, int y) { return grid[y][x]; }
   int &get_field(Field field) { return grid[field.y][field.x]; }
+  void clear();
 
   friend std::istream &operator>>(std::istream &stream, Grid &grid);
+  friend std::ostream &operator<<(std::ostream &stream, const Grid &grid);
   
   friend void test_generating_coordinates(void);
+  friend class Generator;
 };
 
 #endif

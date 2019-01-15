@@ -153,6 +153,13 @@ vector<Field> Grid::fields_coordinates(int x, int y, Orientation orientation)
     return moves;
 }
 
+void Grid::clear(){
+    for(auto &row : grid)
+        for (auto &field : row)
+            if (field != BLOCKED)
+                field = FREE;
+}
+
 istream &operator>>(istream &stream, Grid &grid){
     stream >> grid.height >> grid.width;
 
@@ -173,6 +180,27 @@ istream &operator>>(istream &stream, Grid &grid){
                 grid.free_count++;
             }
         }
+    }
+
+    return stream;
+}
+
+std::ostream &operator<<(std::ostream &stream, const Grid &grid)
+{
+    stream << grid.height << " " << grid.width << endl;
+
+    for (auto &row : grid.grid)
+    {
+        for (auto element : row)
+        {
+            if (element == FREE)
+                stream << "_";
+            else if (element == BLOCKED)
+                stream << "#";
+            else
+                stream << element;
+        }
+        stream << endl;
     }
 
     return stream;

@@ -4,6 +4,7 @@
 #include "DataStructure/Grid.h"
 #include "Solver/Solver.h"
 #include "Solver/BrutSolver.h"
+#include "Generator/Generator.h"
 
 using namespace std;
 
@@ -13,11 +14,13 @@ int main(){
     vector<vector<char>> grid_definition8 {{'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}, {'_', '_', '_', '_', '_', '_', '_', '_'}};
     Grid grid;
 
-    cin >> grid;
+    // cin >> grid;
 
     // BrutSolver solver(grid);
-    Solver solver(grid);
-    cout << solver.solve() << endl;
+    // Solver solver(grid);
+    // cout << solver.solve() << endl;
+    Generator gen(10, 10);
 
+    cout << gen.generate();
     return 0;
 }

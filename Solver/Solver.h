@@ -19,7 +19,7 @@ public:
 private:
   struct QueueEntry
   {
-    int possibilitiesCount;
+    long unsigned int possibilitiesCount;
     Field field;
     bool operator<(const QueueEntry &other) const {
       return possibilitiesCount > other.possibilitiesCount;
