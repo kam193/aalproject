@@ -25,7 +25,7 @@ Grid::Grid(int width, int height, std::vector<std::vector<char>> originalGrid)
     }
 }
 
-Grid::Grid(Grid &old)
+Grid::Grid(const Grid &old)
     : width(old.width), height(old.height), free_count(old.free_count),
       last_index(old.last_index), grid(old.grid) {}
 

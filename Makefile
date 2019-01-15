@@ -1,6 +1,6 @@
 OUTFILE=aal.out
 CFLAGS=-Wall --std=c++11
-FILES=DataStructure/*.cpp Solver/*.cpp Generator/*.cpp
+FILES=DataStructure/*.cpp Solver/*.cpp Generator/*.cpp Tester/*.cpp
 
 debug: test
 	g++ -g ${CFLAGS} ${FILES} main.cpp -o ${OUTFILE}

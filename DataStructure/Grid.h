@@ -41,7 +41,7 @@ class Grid
 public:
   Grid() {}
   Grid(int width, int height, std::vector<std::vector<char>> originalGrid);
-  Grid(Grid &old);
+  Grid(const Grid &old);
 
   void insert(int x, int y, Orientation orientation);
   void remove(int x, int y, Orientation orientation);
